@@ -14,15 +14,14 @@ setup(
     # If you had sshmount_netrc.tests, you would also include that in this list
     packages=find_packages(),
     # Any executable scripts, typically in 'bin'. E.g 'bin/do-something.py'
-    scripts=[],
+    scripts=['bin/sshmount-netrc'],
     # REQUIRED: Your project's URL
     url='https://github.com/tjaartvdwalt/sshmount-netrc',
     # Put your license here. See LICENSE.txt for more information
     license='MIT',
     # Put a nice one-liner description here
     description='ssh mount using passwords saved in .netrc',
-    long_description=open('README.org').read() if exists("README.org")
-    else "Mount ssh filesystems using the passwords saved in your .netrc file",
+    long_description="Mount ssh filesystems using the passwords saved in your .netrc file",
     # Any requirements here, e.g. "Django >= 1.1.1"
     install_requires=[
     ],
