@@ -1,4 +1,6 @@
 * sshmount-netrc
+[[https://badge.fury.io/py/sshmount-netrc.svg][http://badge.fury.io/py/sshmount-netrc]]
+
 A small Python script that mounts ssh mount points using authentication from your .netrc (or alternatively .authinfo) file.
 
 ** Dependencies
