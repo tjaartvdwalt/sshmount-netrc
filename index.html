@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Sshmount-netrc : perform ssh mounts using passwords saved in .netrc">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Sshmount-netrc</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/tjaartvdwalt/sshmount-netrc">View on GitHub</a>
+
+          <h1 id="project_title">Sshmount-netrc</h1>
+          <h2 id="project_tagline">perform ssh mounts using passwords saved in .netrc</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/tjaartvdwalt/sshmount-netrc/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/tjaartvdwalt/sshmount-netrc/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="sshmount-netrc" class="anchor" href="#sshmount-netrc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>sshmount-netrc</h1>
+
+<p><a href="http://badge.fury.io/py/sshmount-netrc"><img src="https://badge.fury.io/py/sshmount-netrc.svg" alt="PyPI version"></a></p>
+
+<p>A small Python script that mounts ssh mount points using authentication from your .netrc (or alternatively .authinfo) file.</p>
+
+<h2>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependencies</h2>
+
+<p>You will need the <code>sshfs</code> package installed and in the <code>PATH</code>.</p>
+
+<p>On Arch linux it is located in the Community repo. You can install it using:</p>
+
+<pre><code>pacman -S sshfs
+</code></pre>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<pre><code>python setup.py install
+</code></pre>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a id="netrc-configuration" class="anchor" href="#netrc-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>netrc configuration</h3>
+
+<p>Your netrc file should have a line matching the following pattern:</p>
+
+<pre><code>machine my_server_name    login my_login    password my_password
+</code></pre>
+
+<h3>
+<a id="command" class="anchor" href="#command" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>command</h3>
+
+<p>Its simplest form: </p>
+
+<pre><code>sshmount-netrc my_server_name
+</code></pre>
+
+<p>Specifying a custom mount point:</p>
+
+<pre><code>sshmount-netrc -m my_mount_point my_server_name
+</code></pre>
+
+<p>Specifying a custom netrc location:</p>
+
+<pre><code>sshmount-netrc -f ~/.authinfo my_server_name
+</code></pre>
+
+<h3>
+<a id="default-mount-point" class="anchor" href="#default-mount-point" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>default mount point</h3>
+
+<p>If no mount<sub>point</sub> is specified the following default will be used</p>
+
+<pre><code>~/mnt/my_login@my_server_name
+</code></pre>
+
+<h3>
+<a id="result" class="anchor" href="#result" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>result</h3>
+
+<p>Under the hood, this script will then execute the following linux commad:</p>
+
+<pre><code>echo my_password | sshfs -o password_stdin my_login@my_server_name: /my_mount_point
+</code></pre>
+
+<h2>
+<a id="limitation" class="anchor" href="#limitation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Limitation</h2>
+
+<p>Currently you cannot have multiple logins on one machine. This is due to a long standing shortcoming  in the Python netrc library.
+At the time of writing the bug describing it has not been resolved: <a href="http://bugs.python.org/issue11416">http://bugs.python.org/issue11416</a></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Sshmount-netrc maintained by <a href="https://github.com/tjaartvdwalt">tjaartvdwalt</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
